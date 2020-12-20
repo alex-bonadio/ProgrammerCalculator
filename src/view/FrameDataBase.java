@@ -2,7 +2,6 @@ package view;
 
 import controller.database.ControllerFrameDataBase;
 
-
 /* @author Alex Bonadio Classe: 146 */
 public class FrameDataBase extends javax.swing.JFrame {
 

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller.database;
 
 import controller.user.Usuario;
@@ -20,9 +15,6 @@ public class ControllerFrameDataBase {
     public Conexao conexao;
     public FrameDataBase frameDataBase;
 
-    /* public Usuario user = new Usuario();
-    public Conexao conexao = new Conexao();
-    public FrameDataBase frameDataBase = new FrameDataBase(); */
     public ControllerFrameDataBase() {
         user = new Usuario();
         conexao = new Conexao();
@@ -88,7 +80,7 @@ public class ControllerFrameDataBase {
                                     break;
                                 }
                             } else {
-                                if (num >= 0 && num <= 255) {     // verifica se as 3 últimas parte do ip são >=0 e <=255
+                                if (num >= 0 && num <= 255) {     // verifica se as 3 últimas partes do ip são >=0 e <=255
                                     check = true;                 // se for, check fica verdadeiro
                                 } else {
                                     check = false;                // senão, fica falso
@@ -96,8 +88,8 @@ public class ControllerFrameDataBase {
                                 }
                             }
                         } else {                              // se tem letras, caracteres especiais
-                            check = false;                    // check é setado para false
-                            break;                            // para o loop a força, já que se tiver uma parte errada, todo o IP é invalidado
+                            check = false;                    // check é configurado para false
+                            break;                            // para o loop a força, já que se tiver uma parte errada, todo o IP será inválido
                         }
                         count++;
                     }
