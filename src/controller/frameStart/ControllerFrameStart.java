@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller.frameStart;
 
 import controller.numericSystems.Octal;
@@ -235,8 +230,8 @@ public class ControllerFrameStart {
         boolean check = false;
         if (controllerFrameDataBase.conexao.getConn() != null) {
             if (entrada02.equals(start.inputTextBox.getText())) {
-                controllerFrameDataBase.frameDataBase.textArea.append("O número " + entrada02 + " na base " + baseNum + " já foi convertido!\nE não será salvo novamente no Banco de Dados!\n\n");
-                System.out.println("O número " + entrada02 + " na base " + baseNum + " já foi convertido!\nE não será salvo novamente no Banco de Dados!\n");
+                controllerFrameDataBase.frameDataBase.textArea.append("O número " + entrada02 + " na base " + baseNum + " já foi convertido!\n\n");
+                System.out.println("O número " + entrada02 + " na base " + baseNum + " já foi convertido!");
                 check = true;
             }
         }

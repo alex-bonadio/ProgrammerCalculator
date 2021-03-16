@@ -14,7 +14,7 @@ public class Conexao {
 
     private Connection conn = null;
     private String msg = "";
-    private String ip = "52.154.73.19";
+    private String ip = "192.168.0.38";
     private String data_registro = "";
 
     public Conexao() {
@@ -25,26 +25,27 @@ public class Conexao {
         msg = "";
         try {
 //          String de Conexão com o MySQL    
-            String driverName = "com.mysql.jdbc.Driver";
-            Class.forName(driverName).newInstance();
+//            String driverName = "com.mysql.jdbc.Driver";
+//            Class.forName(driverName).newInstance();
+//            String serverName = ip;
+//            String portNumber = "3306";
+//            String schema = "conversor";
+//            String url = "jdbc:mysql://" + serverName + ":" + portNumber + "/" + schema;
+//            String username = "userConversor";
+//            String password = "User159753";
+//            conn = DriverManager.getConnection(url, username, password);
+
+//          String de Conexão com o Oracle DataBase
+            String driverName = "oracle.jdbc.driver.OracleDriver";
+            Class.forName(driverName);
             String serverName = ip;
-            String portNumber = "3306";
-            String schema = "conversor";
-            String url = "jdbc:mysql://" + serverName + ":" + portNumber + "/" + schema;
-            String username = "userConversor";
-            String password = "User159753";
+            String portNumber = "1521";
+            String sid = "xe";
+            String url = "jdbc:oracle:thin:@" + serverName + ":" + portNumber + ":" + sid;
+            String username = "system";
+            String password = "cabala";
             conn = DriverManager.getConnection(url, username, password);
 
-//            String de Conexão com o Oracle DataBase
-//            String driverName = "oracle.jdbc.driver.OracleDriver";
-//            Class.forName(driverName);
-//            String serverName = ip;
-//            String portNumber = "1521";
-//            String sid = "xe";
-//            String url = "jdbc:oracle:thin:@" + serverName + ":" + portNumber + ":" + sid;
-//            String username = "system";
-//            String password = "cabala";
-//            conn = DriverManager.getConnection(url, username, password);
 //            String de Conexão com o Postgres
 //            String driverName = "org.postgresql.Driver";
 //            Class.forName(driverName);
@@ -64,8 +65,8 @@ public class Conexao {
             System.out.println("Não foi possível conectar ao IP: " + ip);
             msg = msg + "Não foi possível conectar ao IP: " + ip + "\n\n";
             check = false;
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException erro) {
-//oracle} catch (ClassNotFoundException erro) {
+//mysql        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException erro) {
+        } catch (ClassNotFoundException erro) {
             System.out.println("Erro: " + erro.getMessage());
             check = false;
         }
@@ -77,16 +78,16 @@ public class Conexao {
         msg = "";
         try {
             String sql;
-            // Oracle Insert
+//        Oracle Insert
 //          sql = "insert into conversao (binario, ternario, octal, decima, hexadecimal, data_registro, id_usuario) values(?,?,?,?,?,?,?)";
-//            sql = "insert into conversao (binario, ternario, octal, decima, hexadecimal, data_registro, id_usuario) "
-//                    + "values('" + binario + "','" + ternario + "','" + octal + "','" + decima + "','" + hexadecimal + "',"
-//                    + "to_date('" + data_registro + "', 'dd/mm/yyyy hh24:mi:ss'),'" + id_usuario + "')";
-
-            // MySQL Insert
             sql = "insert into conversao (binario, ternario, octal, decima, hexadecimal, data_registro, id_usuario, numero, base) "
                     + "values('" + binario + "','" + ternario + "','" + octal + "','" + decima + "','" + hexadecimal + "',"
-                    + "STR_TO_DATE('" + data_registro + "', '%d/%m/%Y %H:%i:%s'),'" + id_usuario + "', '" + numero + "', '" + base + "')";
+                    + "to_date('" + data_registro + "', 'dd/mm/yyyy hh24:mi:ss'),'" + id_usuario + "', '" + numero + "', '" + base + "')";
+
+//            // MySQL Insert
+//            sql = "insert into conversao (binario, ternario, octal, decima, hexadecimal, data_registro, id_usuario, numero, base) "
+//                    + "values('" + binario + "','" + ternario + "','" + octal + "','" + decima + "','" + hexadecimal + "',"
+//                    + "STR_TO_DATE('" + data_registro + "', '%d/%m/%Y %H:%i:%s'),'" + id_usuario + "', '" + numero + "', '" + base + "')";
 
             PreparedStatement execucao = conn.prepareStatement(sql);
 //          execucao.execute(sql);
@@ -116,15 +117,16 @@ public class Conexao {
         boolean check = false;
         msg = "";
         try {
-//            String sql = "insert into usuario (nome, ip, hostname) values(?,?,?)";
-//            Oracle Insert
-//            String sql = "insert into usuario (nome, ip, hostname, data_registro) "
-//                    + "values('" + nome + "', '" + ip + "', '" + hostname + "',"
-//                    + "to_date('" + data_registro + "', 'dd/mm/yyyy hh24:mi:ss'))";
-            // MySQL Insert
+            
+//          String sql = "insert into usuario (nome, ip, hostname) values(?,?,?)";
+//          Oracle Insert
             String sql = "insert into usuario (nome, ip, hostname, data_registro) "
                     + "values('" + nome + "', '" + ip + "', '" + hostname + "',"
-                    + "STR_TO_DATE('" + data_registro + "', '%d/%m/%Y %H:%i:%s'))";
+                    + "to_date('" + data_registro + "', 'dd/mm/yyyy hh24:mi:ss'))";
+            // MySQL Insert
+//            String sql = "insert into usuario (nome, ip, hostname, data_registro) "
+//                    + "values('" + nome + "', '" + ip + "', '" + hostname + "',"
+//                    + "STR_TO_DATE('" + data_registro + "', '%d/%m/%Y %H:%i:%s'))";
 
             PreparedStatement execucao = conn.prepareStatement(sql);
 //          execucao.setString(1, nome);
