@@ -24,7 +24,7 @@ public abstract class SistemaNumerico {
     // Ao Estender esta classe, será necessário construir um corpo para este método
 
     public void dividir() {
-        // Método faz a divisão, armazena os resto de cada divisão e o quociente da última divisão no vetor resto[]
+        // Método faz a divisão, armazena o resto de cada divisão e o quociente da última divisão no vetor resto[]
         if (divisor > entrada01) {
             resto.add(bit, entrada01);
         } else {
