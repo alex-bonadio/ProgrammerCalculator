@@ -14,7 +14,7 @@ public class Conexao {
 
     private Connection conn = null;
     private String msg = "";
-    private String ip = "192.168.0.65";
+    private String ip = "192.168.0.129"; // "192.168.0.65"; CentOS 7 new com IP anterior
     //private String ip = "192.168.0.38"; // CentOS 7 antigo
     private String data_registro = "";
 
