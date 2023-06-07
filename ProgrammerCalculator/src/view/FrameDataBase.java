@@ -1,6 +1,9 @@
 package view;
 
 import controller.database.ControllerFrameDataBase;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /* @author Alex Bonadio Classe: 146 */
 public class FrameDataBase extends javax.swing.JFrame {
@@ -129,7 +132,11 @@ public class FrameDataBase extends javax.swing.JFrame {
 
     private void botaoConfigurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoConfigurarActionPerformed
 
-        controllerFrameDataBase.configurarIP();
+        try {
+            controllerFrameDataBase.configurarIP();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameDataBase.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botaoConfigurarActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

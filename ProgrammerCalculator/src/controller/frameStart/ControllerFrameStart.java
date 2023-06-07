@@ -7,6 +7,7 @@ import controller.numericSystems.Decimal;
 import controller.numericSystems.Ternario;
 import controller.numericSystems.Binario;
 import controller.database.ControllerFrameDataBase;
+import java.io.IOException;
 import view.FrameStart;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,7 +40,7 @@ public class ControllerFrameStart {
         this.start = start;
     }
 
-    public void conectarDataBase() {
+    public void conectarDataBase() throws IOException {
         // método é acionado quando o usuário clica no botão Online
         // ele chama os métodos que fazem a conexão com o DataBase
         configData(); // Pega a data e horário do PC e exibe na Tela e também salva no DataBase

@@ -1,6 +1,9 @@
 package view;
 
 import controller.frameStart.ControllerFrameStart;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /* @author Alex Bonadio Linhas de Codigo: 1677  Classe: 389 Pacote: 973 */
@@ -310,7 +313,11 @@ public class FrameStart extends javax.swing.JFrame {
 
     private void botaoOnlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoOnlineActionPerformed
 
-        controllerFrameStart.conectarDataBase();
+        try {
+            controllerFrameStart.conectarDataBase();
+        } catch (IOException ex) {
+            Logger.getLogger(FrameStart.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_botaoOnlineActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed

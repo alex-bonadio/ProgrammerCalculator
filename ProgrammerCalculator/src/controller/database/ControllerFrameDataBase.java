@@ -1,6 +1,14 @@
 package controller.database;
 
 import controller.user.Usuario;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Conexao;
 import view.FrameDataBase;
@@ -47,7 +55,7 @@ public class ControllerFrameDataBase {
     }
 
     // método valida se o IPv4 está no formato correto e se estiver o usará para conectar o programa no MySQL
-    public void configurarIP() {
+    public void configurarIP() throws IOException {
         boolean check = true;  // se o IP estiver correto, check no final do método continuará TRUE
         String ip = JOptionPane.showInputDialog("Qual é o IPv4 do Servidor do Banco de Dados?");
         if (ip == null) {
@@ -99,7 +107,7 @@ public class ControllerFrameDataBase {
         exibirMsgConfigIP(check, ip);
     }
 
-    public void exibirMsgConfigIP(boolean check, String ip) {
+    public void exibirMsgConfigIP(boolean check, String ip) throws IOException {
         if (check == false) {                          // se o ip nao passou na validação, check é falso
             System.out.println("IP Inválido: " + ip); // assim a mensagem de ip inválido é exibida
             JOptionPane.showMessageDialog(null, "IP Inválido: " + ip);
@@ -108,6 +116,7 @@ public class ControllerFrameDataBase {
         } else {                                     // se passou no teste e a string ip não é nula
             if (ip != null) {                        // então é tentado fazer a conexao com o DataBase
                 conexao.setIp(ip);
+//                gravarIP(ip);
                 conexao.conectarDataBase();
                 frameDataBase.textArea.append(conexao.getMsg());
                 if (conexao.getConn() != null) {
@@ -115,6 +124,36 @@ public class ControllerFrameDataBase {
                     frameDataBase.textArea.append(conexao.getMsg());
                 }
             }
+//            if (ip == null) {
+//                lerIP();
+//            }
         }
     }
+
+//    public void gravarIP(String ip) throws IOException {
+//        try {
+//            FileWriter iptext = new FileWriter("c:\\ip.txt");
+//            try (PrintWriter iptextwriter = new PrintWriter(iptext)) {
+//                iptextwriter.printf(ip);
+//            }
+//        } catch (IOException ex) {
+//        }
+//    }
+
+//    public void lerIP() {
+//        try {
+//            BufferedReader buffRead = new BufferedReader(new FileReader("c:\\ip.txt"));
+//            String ip;
+//            try {
+//                ip = buffRead.readLine();
+//                conexao.setIp(ip);
+//            } catch (IOException ex) {
+//                Logger.getLogger(ControllerFrameDataBase.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//        } catch (FileNotFoundException ex) {
+//            Logger.getLogger(ControllerFrameDataBase.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 }
