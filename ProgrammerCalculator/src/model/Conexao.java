@@ -14,7 +14,7 @@ public class Conexao {
 
     private Connection conn = null;
     private String msg = "";
-    private String ip = "192.168.0.155"; // CentOS 7 Gnome 08-02-2023
+    private String ip = "192.168.0.180"; // CentOS 7 Gnome 10-01-2024
     private String data_registro = "";
 
     public Conexao() {
@@ -42,8 +42,8 @@ public class Conexao {
             String portNumber = "1521";
             String sid = "xe";
             String url = "jdbc:oracle:thin:@" + serverName + ":" + portNumber + ":" + sid;
-            String username = "system";
-            String password = "cabalah";
+            String username = "system"; // system conversor
+            String password = "cabala";
             conn = DriverManager.getConnection(url, username, password);
 
 //            String de Conexão com o PostgreSQL
